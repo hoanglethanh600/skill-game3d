@@ -1,0 +1,226 @@
+{
+ "skill": "game3d",
+ "characters": [
+  {
+   "code": "NV-01",
+   "name": "Mô phỏng 3D chân thật",
+   "signs": "Tỉ lệ người thật (đầu ≈ 1/7,5 thân), da/vải màu tự nhiên, không má hồng, mắt tỉ lệ thật",
+   "build_params": "MeshStandardMaterial + texture thủ tục (canvas) cho da/vải; đèn mặt trời + đổ bóng mềm; khử hoàn toàn chi tiết hoạt hình",
+   "best_for": "Game mô phỏng, làng quê/thành phố chân thực, sản phẩm cần cảm giác thật"
+  },
+  {
+   "code": "NV-02",
+   "name": "Hoạt hình 3D kiểu Pixar",
+   "signs": "Tỉ lệ hơi cường điệu (đầu ≈ 1/5 thân), mặt biểu cảm lớn, màu tươi bóng",
+   "build_params": "Vật liệu mịn, sáng đều, mắt to vừa + điểm sáng; màu bão hoà cao",
+   "best_for": "Video kể chuyện, kênh BibleTalesIn3D, nội dung thiếu nhi"
+  },
+  {
+   "code": "NV-03",
+   "name": "Chibi 3D",
+   "signs": "Đầu to (đầu ≈ 1/2,5 thân), thân ngắn, mắt rất to long lanh, má hồng, miệng nhỏ",
+   "build_params": "Đầu scale lớn, mắt sprite sáng + má hồng là 2 đĩa hồng mờ; tông pastel",
+   "best_for": "Game nhẹ nhàng, mascot, nội dung dễ thương cho trẻ"
+  },
+  {
+   "code": "NV-04",
+   "name": "Anime 3D (cel-shading)",
+   "signs": "Viền nét đen rõ, tô màu phẳng 2-3 tông, tóc mảng lớn",
+   "build_params": "Toon material + outline mesh; bảng màu phẳng",
+   "best_for": "Game/video phong cách Nhật, nhân vật trẻ"
+  },
+  {
+   "code": "NV-05",
+   "name": "Bán chân thật (semi-realistic)",
+   "signs": "Tỉ lệ gần thật (đầu ≈ 1/6,5 thân) nhưng da mịn lý tưởng hoá, mắt hơi to",
+   "build_params": "Kết hợp standard material mịn + rim light nhẹ",
+   "best_for": "Game nhập vai, nhân vật chính đẹp mà vẫn nhẹ máy"
+  },
+  {
+   "code": "NV-06",
+   "name": "Low-poly tối giản",
+   "signs": "Khối đa giác ít, mặt phẳng, màu phẳng không texture",
+   "build_params": "Flat shading, đếm poly thấp, không texture",
+   "best_for": "Bản nhẹ nhất, tải nhanh, máy yếu, prototype"
+  },
+  {
+   "code": "NV-07",
+   "name": "Voxel / khối hộp",
+   "signs": "Toàn thân ghép từ khối vuông, chuyển động cứng theo lưới",
+   "build_params": "Voxel mesh theo lưới ô; palette màu giới hạn",
+   "best_for": "Game kiểu Minecraft, xây dựng/xếp hình"
+  },
+  {
+   "code": "NV-08",
+   "name": "Đất sét (clay)",
+   "signs": "Bề mặt như nặn tay, vân tay nhẹ, tỉ lệ mềm hơi méo tự nhiên",
+   "build_params": "Texture noise mịn + màu đất; ánh sáng ấm",
+   "best_for": "Cổ tích, stop-motion, nội dung thủ công cho trẻ"
+  },
+  {
+   "code": "NV-09",
+   "name": "Tiên hiệp 3D",
+   "signs": "Trang phục cổ trang, tóc dài, hiệu ứng linh khí/hào quang",
+   "build_params": "Thêm mesh phụ kiện (kiếm, áo choàng) + hạt hiệu ứng phát sáng",
+   "best_for": "Tu tiên, kiếm hiệp, web Tiếng Trung, game Tu Tiên"
+  },
+  {
+   "code": "NV-10",
+   "name": "Mô hình thu nhỏ",
+   "signs": "Nhân vật như tượng nhựa nhỏ trên đế, khớp nối tối giản",
+   "build_params": "Tỉ lệ chibi nhẹ + đế tròn dưới chân; vật liệu nhựa bóng nhẹ",
+   "best_for": "Sa bàn, diorama, game chiến thuật nhìn từ trên"
+  }
+ ],
+ "environments": [
+  {
+   "code": "NC-01",
+   "name": "Chân thật tự nhiên",
+   "signs": "Vân gỗ/vỏ cây/cỏ/ngói có bề mặt, nắng thật, bóng mềm, sương xa nhẹ",
+   "build_params": "Texture thủ tục canvas cho từng vật liệu; trời gradient + fog; nước sông động (uv/opacity)",
+   "best_for": "Đi cùng NV-01; game làng quê mô phỏng (bản hiện hành)"
+  },
+  {
+   "code": "NC-02",
+   "name": "Pastel mềm",
+   "signs": "Cây tán tròn mềm, màu sáng dịu, mây trắng tròn trôi",
+   "build_params": "Màu pastel, tán lá hình cầu mềm, không texture thô",
+   "best_for": "Đi cùng NV-03 chibi"
+  },
+  {
+   "code": "NC-03",
+   "name": "Sa bàn thu nhỏ (diorama)",
+   "signs": "Cả cảnh như mô hình trên bàn, mép nền rõ, nhìn từ trên nổi khối",
+   "build_params": "Thu nhỏ tỉ lệ cảnh + đế nền; DOF giả bằng fog gần",
+   "best_for": "Đi cùng NV-10; game chiến thuật/thư giãn"
+  },
+  {
+   "code": "NC-04",
+   "name": "Voxel",
+   "signs": "Đồi/nhà/cây đều khối hộp theo lưới",
+   "build_params": "Voxel hoá toàn cảnh, palette đồng bộ NV-07",
+   "best_for": "Game xây dựng kiểu Minecraft"
+  },
+  {
+   "code": "NC-05",
+   "name": "Low-poly phẳng",
+   "signs": "Đồi/cây hình học ít mặt, trời gradient, không texture",
+   "build_params": "Flat shading toàn cảnh, poly thấp",
+   "best_for": "Đi cùng NV-06; máy yếu/tải nhanh"
+  },
+  {
+   "code": "NC-06",
+   "name": "Cel-shaded",
+   "signs": "Cảnh như phim hoạt hình: mây vẽ, màu tươi, viền nét ở vật chính",
+   "build_params": "Toon shading + outline cho vật chính; mây dạng sprite vẽ",
+   "best_for": "Đi cùng NV-04 anime"
+  },
+  {
+   "code": "NC-07",
+   "name": "Đất sét",
+   "signs": "Nhà/cây như nặn tay, bề mặt noise mịn, màu đất ấm",
+   "build_params": "Texture noise + palette đất; sáng ấm",
+   "best_for": "Đi cùng NV-08 clay; cổ tích"
+  }
+ ],
+ "variants": {
+  "thoi_gian": [
+   {
+    "code": "TG-1",
+    "name": "Bình minh",
+    "note": "Nắng vàng thấp, sương nhẹ, trời hồng-xanh"
+   },
+   {
+    "code": "TG-2",
+    "name": "Trưa nắng",
+    "note": "Nắng trắng cao, bóng ngắn, màu rực (mặc định bản chân thật)"
+   },
+   {
+    "code": "TG-3",
+    "name": "Hoàng hôn",
+    "note": "Nắng cam thấp, bóng dài, trời cam-tím"
+   },
+   {
+    "code": "TG-4",
+    "name": "Đêm trăng",
+    "note": "Trăng + sao, đèn lồng/đèn nhà phát sáng, tông xanh đêm"
+   }
+  ],
+  "thoi_tiet": [
+   {
+    "code": "TT-1",
+    "name": "Nắng trong",
+    "note": "Không hiệu ứng (mặc định)"
+   },
+   {
+    "code": "TT-2",
+    "name": "Sương sớm",
+    "note": "Fog dày gần mặt đất, tầm nhìn ngắn"
+   },
+   {
+    "code": "TT-3",
+    "name": "Mưa",
+    "note": "Hạt mưa + mặt đất ướt bóng + tiếng mưa (WebAudio)"
+   }
+  ],
+  "mua_le": [
+   {
+    "code": "M-1",
+    "name": "Xuân",
+    "note": "Hoa nở hồng/trắng trên cây, cỏ non"
+   },
+   {
+    "code": "M-2",
+    "name": "Hạ",
+    "note": "Xanh đậm, nắng gắt (mặc định)"
+   },
+   {
+    "code": "M-3",
+    "name": "Thu",
+    "note": "Lá vàng/cam, lá rụng nhiều"
+   },
+   {
+    "code": "M-4",
+    "name": "Đông",
+    "note": "Cây thưa lá, tông lạnh, hơi sương"
+   },
+   {
+    "code": "M-5",
+    "name": "Tết",
+    "note": "Đèn lồng đỏ, câu đối, đào/mai trang trí"
+   },
+   {
+    "code": "M-6",
+    "name": "Trung thu",
+    "note": "Đèn lồng + trăng tròn lớn, rước đèn"
+   }
+  ]
+ },
+ "combos": [
+  {
+   "code": "CB-01",
+   "name": "Làng quê chân thật (hiện hành — Gốc Cây Đầu Làng)",
+   "mix": "NV-01 + NC-01 + TG-2 + TT-1 + M-2"
+  },
+  {
+   "code": "CB-02",
+   "name": "Làng chibi dễ thương",
+   "mix": "NV-03 + NC-02 + TG-1 + TT-1 + M-1"
+  },
+  {
+   "code": "CB-03",
+   "name": "Anime học đường",
+   "mix": "NV-04 + NC-06 + TG-3 + TT-1 + M-1"
+  },
+  {
+   "code": "CB-04",
+   "name": "Sa bàn chiến thuật",
+   "mix": "NV-10 + NC-03 + TG-2 + TT-1"
+  },
+  {
+   "code": "CB-05",
+   "name": "Cổ tích đất sét",
+   "mix": "NV-08 + NC-07 + TG-1 + TT-2"
+  }
+ ]
+}

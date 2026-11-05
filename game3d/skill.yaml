@@ -1,0 +1,5 @@
+name: game3d
+title: "Game 3D — web game Three.js + Socket.IO với phong cách đánh số NV/NC/CB"
+description: "Game 3D — dựng web game 3D (Three.js + Socket.IO nhiều người chơi) với HỆ PHONG CÁCH ĐÁNH SỐ: nhân vật NV-01..NV-10 (mô phỏng chân thật, Pixar, chibi, anime cel-shading, bán chân thật, low-poly, voxel, đất sét, tiên hiệp, mô hình thu nhỏ), ngoại cảnh NC-01..NC-07 (chân thật tự nhiên, pastel mềm, sa bàn diorama, voxel, low-poly phẳng, cel-shaded, đất sét), biến thể thời gian TG-1..4 / thời tiết TT-1..3 / mùa lễ M-1..6 và combo CB-01..05. Người dùng gọi phong cách BẰNG SỐ (ví dụ 'nhân vật NV-01, cảnh NC-01'). Kèm kiến trúc chuẩn đã kiểm chứng (server Node Socket.IO, client 1 file, Three.js vendor local không phụ thuộc CDN, texture thủ tục, âm thanh WebAudio), quy trình dựng, quy tắc cứng (joystick không ngược hướng, HUD không chồng lấn trên điện thoại, kiểm chứng 2 client + ảnh chụp) và đường deploy GitHub private + Render free. Dùng khi người dùng yêu cầu tạo/sửa web game 3D, game nhiều người chơi, đổi phong cách đồ họa game, hoặc gọi mã NV-/NC-/CB-."
+category: Creation
+include_in_prompt: false

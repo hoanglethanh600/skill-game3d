@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAME3D — Skill dựng web game 3D với phong cách đánh số NV / NC / CB</title>
+<meta name="description" content="Skill game3d: dựng web game 3D nhiều người chơi (Three.js + Socket.IO) với hệ phong cách đánh số — nhân vật NV-01..NV-10, ngoại cảnh NC-01..NC-07, combo CB-01..CB-05.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#f5c542; --gold2:#ffe9a8; --ink:#eef1ff; --mut:#b9c2e4; --panel:rgba(10,14,34,.82); --line:rgba(245,197,66,.55); }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:"Be Vietnam Pro",system-ui,sans-serif; color:var(--ink); background:#04061a; overflow-x:hidden; }
+  #stars{ position:fixed; inset:0; z-index:0; }
+  .wrap{ position:relative; z-index:1; width:100%; padding:0 clamp(14px,3.5vw,44px) 40px; }
+  .panel{ background:var(--panel); border:1.5px solid var(--line); border-radius:16px; padding:clamp(18px,3vw,34px); margin-top:26px;
+          box-shadow:0 0 22px rgba(245,197,66,.35), inset 0 0 34px rgba(245,197,66,.06); backdrop-filter:blur(3px);
+          animation:aiGoldPulse 3.4s ease-in-out infinite; }
+  @keyframes aiGoldPulse{ 0%,100%{ box-shadow:0 0 16px rgba(245,197,66,.28), inset 0 0 30px rgba(245,197,66,.05);} 50%{ box-shadow:0 0 30px rgba(245,197,66,.5), inset 0 0 40px rgba(245,197,66,.09);} }
+  header.hero{ text-align:center; padding-top:44px; }
+  .kicker{ letter-spacing:.35em; font-size:13px; color:var(--gold2); text-transform:uppercase; }
+  h1{ font-family:"Playfair Display",serif; font-size:clamp(44px,8vw,92px); line-height:1.05; margin:10px 0 6px;
+      background:linear-gradient(180deg,#fff6d8,#f5c542 60%,#b8860b); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub{ font-size:clamp(16px,2.4vw,21px); color:var(--mut); max-width:900px; margin:0 auto; }
+  .btns{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:26px; }
+  .btn{ display:inline-block; padding:14px 28px; border-radius:999px; font-weight:700; font-size:16px; text-decoration:none; border:1.5px solid var(--gold); transition:.2s; }
+  .btn.gold{ background:linear-gradient(180deg,#ffd968,#e0a81c); color:#241a00; }
+  .btn.ghost{ color:var(--gold2); background:rgba(245,197,66,.08); }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(245,197,66,.35); }
+  h2{ font-family:"Playfair Display",serif; font-size:clamp(26px,4vw,38px); color:var(--gold2); margin-bottom:6px; }
+  .note{ color:var(--mut); margin-bottom:16px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; }
+  .card{ background:rgba(16,22,52,.9); border:1px solid rgba(245,197,66,.35); border-radius:12px; padding:16px; }
+  .card .code{ display:inline-block; font-weight:700; color:#241a00; background:linear-gradient(180deg,#ffd968,#e0a81c); border-radius:8px; padding:2px 10px; font-size:14px; margin-bottom:8px; }
+  .card h3{ font-size:17px; margin-bottom:6px; color:#fff; }
+  .card p{ font-size:14px; color:var(--mut); line-height:1.5; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{ background:rgba(16,22,52,.9); border:1px solid rgba(245,197,66,.35); border-radius:999px; padding:9px 16px; font-size:14.5px; }
+  .chip b{ color:var(--gold2); }
+  ol.steps{ margin-left:22px; line-height:1.9; color:var(--ink); }
+  ol.steps code, .mono{ background:rgba(245,197,66,.12); border:1px solid rgba(245,197,66,.3); border-radius:6px; padding:1px 7px; font-size:.92em; }
+  .demo{ text-align:center; }
+  .demo a.big{ font-size:clamp(18px,2.6vw,24px); color:var(--gold2); font-weight:700; }
+  footer{ text-align:center; color:var(--mut); font-size:14px; padding:30px 10px 8px; position:relative; z-index:1; }
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="wrap">
+
+  <header class="hero panel">
+    <div class="kicker">Skill cho Muse · Web game 3D nhiều người chơi</div>
+    <h1>GAME3D</h1>
+    <p class="sub">Dựng web game 3D (Three.js + Socket.IO) với <b>hệ phong cách ĐÁNH SỐ</b> — gọi phong cách bằng mã: nhân vật <b>NV-01…NV-10</b>, ngoại cảnh <b>NC-01…NC-07</b>, biến thể TG / TT / M và combo sẵn <b>CB-01…CB-05</b>.</p>
+    <div class="btns">
+      <a class="btn gold" href="skill-game3d.zip" download>⬇ Tải gói skill (.zip)</a>
+      <a class="btn ghost" href="https://github.com/hoanglethanh600/skill-game3d" target="_blank" rel="noopener">Xem mã nguồn trên GitHub</a>
+    </div>
+  </header>
+
+  <section class="panel">
+    <h2>🎭 Nhân vật — mã NV</h2>
+    <p class="note">10 phong cách nhân vật 3D dựng bằng code (hình khối + texture thủ tục), không cần model ngoài.</p>
+    <div class="grid">
+      <div class="card"><span class="code">NV-01</span><h3>Mô phỏng 3D chân thật</h3><p>Tỉ lệ người thật, da/vải tự nhiên — chuẩn mô phỏng.</p></div>
+      <div class="card"><span class="code">NV-02</span><h3>Hoạt hình 3D kiểu Pixar</h3><p>Đầu hơi to, mặt biểu cảm, màu tươi bóng.</p></div>
+      <div class="card"><span class="code">NV-03</span><h3>Chibi 3D</h3><p>Đầu to, mắt long lanh, má hồng — dễ thương cho trẻ.</p></div>
+      <div class="card"><span class="code">NV-04</span><h3>Anime 3D (cel-shading)</h3><p>Viền nét đen, tô màu phẳng 2–3 tông.</p></div>
+      <div class="card"><span class="code">NV-05</span><h3>Bán chân thật</h3><p>Gần tỉ lệ thật, da mịn lý tưởng hoá, mắt hơi to.</p></div>
+      <div class="card"><span class="code">NV-06</span><h3>Low-poly tối giản</h3><p>Khối ít mặt, màu phẳng — nhẹ nhất, tải nhanh.</p></div>
+      <div class="card"><span class="code">NV-07</span><h3>Voxel / khối hộp</h3><p>Toàn thân ghép từ khối vuông kiểu Minecraft.</p></div>
+      <div class="card"><span class="code">NV-08</span><h3>Đất sét (clay)</h3><p>Bề mặt như nặn tay, màu đất ấm — cổ tích.</p></div>
+      <div class="card"><span class="code">NV-09</span><h3>Tiên hiệp 3D</h3><p>Cổ trang, tóc dài, linh khí hào quang.</p></div>
+      <div class="card"><span class="code">NV-10</span><h3>Mô hình thu nhỏ</h3><p>Như tượng nhựa nhỏ có đế — cho sa bàn.</p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>🏞️ Ngoại cảnh — mã NC</h2>
+    <p class="note">7 phong cách bối cảnh, phối đẹp nhất với mã nhân vật gợi ý trong skill.</p>
+    <div class="grid">
+      <div class="card"><span class="code">NC-01</span><h3>Chân thật tự nhiên</h3><p>Vân gỗ/vỏ cây/cỏ/ngói, nắng thật, nước sông động.</p></div>
+      <div class="card"><span class="code">NC-02</span><h3>Pastel mềm</h3><p>Tán cây tròn mềm, màu sáng dịu, mây trắng tròn.</p></div>
+      <div class="card"><span class="code">NC-03</span><h3>Sa bàn thu nhỏ</h3><p>Cả cảnh như mô hình diorama trên bàn.</p></div>
+      <div class="card"><span class="code">NC-04</span><h3>Voxel</h3><p>Đồi/nhà/cây đều khối hộp theo lưới.</p></div>
+      <div class="card"><span class="code">NC-05</span><h3>Low-poly phẳng</h3><p>Hình học ít mặt, trời gradient, không texture.</p></div>
+      <div class="card"><span class="code">NC-06</span><h3>Cel-shaded</h3><p>Mây vẽ, màu tươi, viền nét ở vật chính.</p></div>
+      <div class="card"><span class="code">NC-07</span><h3>Đất sét</h3><p>Nhà/cây như nặn tay, màu đất ấm.</p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>🌗 Biến thể phủ lên mọi phong cách</h2>
+    <p class="note">Ghép thêm mã biến thể sau mã chính, ví dụ: <span class="mono">NV-01 + NC-01 + TG-4 + M-5</span> = làng chân thật, đêm trăng, ngày Tết.</p>
+    <div class="chips">
+      <span class="chip"><b>TG-1</b> Bình minh</span><span class="chip"><b>TG-2</b> Trưa nắng</span><span class="chip"><b>TG-3</b> Hoàng hôn</span><span class="chip"><b>TG-4</b> Đêm trăng</span>
+      <span class="chip"><b>TT-1</b> Nắng trong</span><span class="chip"><b>TT-2</b> Sương sớm</span><span class="chip"><b>TT-3</b> Mưa</span>
+      <span class="chip"><b>M-1</b> Xuân</span><span class="chip"><b>M-2</b> Hạ</span><span class="chip"><b>M-3</b> Thu</span><span class="chip"><b>M-4</b> Đông</span><span class="chip"><b>M-5</b> Tết</span><span class="chip"><b>M-6</b> Trung thu</span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>🎁 Combo sẵn — mã CB</h2>
+    <div class="grid">
+      <div class="card"><span class="code">CB-01</span><h3>Làng quê chân thật</h3><p>NV-01 + NC-01 + TG-2 + TT-1 + M-2 — bản đang chạy thật ở game Gốc Cây Đầu Làng.</p></div>
+      <div class="card"><span class="code">CB-02</span><h3>Làng chibi dễ thương</h3><p>NV-03 + NC-02 + TG-1 + TT-1 + M-1.</p></div>
+      <div class="card"><span class="code">CB-03</span><h3>Anime học đường</h3><p>NV-04 + NC-06 + TG-3 + TT-1 + M-1.</p></div>
+      <div class="card"><span class="code">CB-04</span><h3>Sa bàn chiến thuật</h3><p>NV-10 + NC-03 + TG-2 + TT-1.</p></div>
+      <div class="card"><span class="code">CB-05</span><h3>Cổ tích đất sét</h3><p>NV-08 + NC-07 + TG-1 + TT-2.</p></div>
+    </div>
+  </section>
+
+  <section class="panel demo">
+    <h2>🎮 Sản phẩm mẫu dùng skill này</h2>
+    <p class="note">Game <b>Gốc Cây Đầu Làng</b> — làng quê 3D nhiều người chơi, combo CB-01:</p>
+    <a class="big" href="https://goc-cay-dau-lang-hoangpro.onrender.com" target="_blank" rel="noopener">goc-cay-dau-lang-hoangpro.onrender.com</a>
+  </section>
+
+  <section class="panel">
+    <h2>⚙️ Kiến trúc kèm theo trong skill</h2>
+    <div class="chips">
+      <span class="chip">Server Node.js + Socket.IO</span>
+      <span class="chip">Client 1 file HTML</span>
+      <span class="chip">Three.js vendor local — không phụ thuộc CDN</span>
+      <span class="chip">Texture thủ tục vẽ bằng canvas</span>
+      <span class="chip">Âm thanh WebAudio tổng hợp</span>
+      <span class="chip">Joystick điện thoại không ngược hướng</span>
+      <span class="chip">HUD không chồng lấn màn hình dọc</span>
+      <span class="chip">Deploy GitHub + Render miễn phí</span>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>📥 Cài đặt skill</h2>
+    <ol class="steps">
+      <li>Tải gói <span class="mono">skill-game3d.zip</span> ở đầu trang và giải nén.</li>
+      <li>Chép thư mục <span class="mono">game3d</span> vào <span class="mono">~/workspace/custom-skills/</span> của Muse.</li>
+      <li>Gọi bằng mã số, ví dụ: <i>“tạo game 3D phong cách NV-05 + NC-06”</i> hoặc <i>“đổi game sang CB-02, thêm TG-4”</i>.</li>
+    </ol>
+  </section>
+
+</div>
+<footer>© By Hoang Kim Long - Email: tonyhoang.oliver@gmail.com</footer>
+<script>
+  const c = document.getElementById('stars'), x = c.getContext('2d'); let W, H, S = [];
+  function rs(){ W = c.width = innerWidth; H = c.height = innerHeight;
+    S = Array.from({length: 170}, () => ({ x: Math.random()*W, y: Math.random()*H, r: Math.random()*1.6+.3, p: Math.random()*6.28, s: .008+Math.random()*.02 })); }
+  addEventListener('resize', rs); rs();
+  (function loop(){ x.clearRect(0,0,W,H);
+    const g = x.createLinearGradient(0,0,0,H); g.addColorStop(0,'#070b2e'); g.addColorStop(.6,'#0a1038'); g.addColorStop(1,'#04061a');
+    x.fillStyle = g; x.fillRect(0,0,W,H);
+    for (const s of S){ s.p += s.s; x.globalAlpha = .45 + .55*Math.abs(Math.sin(s.p)); x.fillStyle = '#ffeec2';
+      x.beginPath(); x.arc(s.x, s.y, s.r, 0, 6.29); x.fill(); }
+    x.globalAlpha = 1; requestAnimationFrame(loop); })();
+</script>
+</body>
+</html>
